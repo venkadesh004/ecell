@@ -1,0 +1,12 @@
+.BellIcon {
+    background-color: #F4F5F9;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}

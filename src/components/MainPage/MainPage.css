@@ -1,0 +1,72 @@
+.MainPage {
+    width: 85%;
+    height: 100%;
+    background-color: #F5F7F9;
+
+    border-top-left-radius: 10px;
+
+    padding: 10px;
+
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    padding-bottom: 20px;
+}
+
+.MainPage::-webkit-scrollbar {
+    display: none;
+}
+
+.pin-company {
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: 300px;
+    flex-wrap: nowrap;
+    margin-left: -20px;
+}
+
+.pin-company::-webkit-scrollbar {
+    display: none;
+}
+
+.pinned-heading {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.pinned-heading h1 {
+    color: #262E4A;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.pinned-heading img {
+    width: 10px;
+}
+
+.pin-company button {
+    height: 200px;
+
+    background-color: white;
+
+    padding: 10px;
+
+    border-radius: 10px;
+    cursor: pointer;
+
+    margin-left: 40px;
+
+    min-width: 300px;
+
+    border: none;
+    outline: none;
+}

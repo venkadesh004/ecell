@@ -1,0 +1,32 @@
+.SearchBar {
+    width: 800px;
+    height: 50px;
+
+    background-color: #FAFBFC;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px;
+
+    border-radius: 20px;
+}
+
+.SearchBar img {
+    width: 20px;
+    height: 20px;
+}
+
+.SearchBar-input {
+    color: #9CA8BA;
+    margin-left: 20px;
+    outline: none;
+    border: none;
+    height: 45px;
+    width: 100%;
+}
+
+.SearchBar-input::placeholder {
+    font-size: 17px;
+    color: #9CA8BA;
+}

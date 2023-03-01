@@ -1,0 +1,67 @@
+.WatchList {
+    width: 800px;
+    height: 600px;
+    background-color: white;
+    margin-top: 40px;
+    margin-left: 20px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.watchlist-chart {
+    height: 500px;
+}
+
+.watchlist-heading {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.watchlist-companyname {
+    display: flex;
+    align-items: center;
+}
+
+.watchlist-companyname img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.watchlist-heading-amount {
+    margin-top: 20px;
+}
+
+.watchlist-heading-amount h2 {
+    font-size: 30px;
+}
+
+.amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.watchlist-heading-amount p {
+    color: #96A0B5;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.amount p {
+    width: 70px;
+    height: 40px;
+    /* background-color: #EEFBF5; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+
+    margin-left: 20px;
+
+    font-weight: 500;
+}

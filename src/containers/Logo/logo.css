@@ -1,0 +1,12 @@
+.logo-div {
+    width: 160px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-image {
+    height: 50px;
+    cursor: pointer;
+}
