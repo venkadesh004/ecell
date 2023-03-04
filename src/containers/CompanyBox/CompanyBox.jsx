@@ -4,21 +4,9 @@ import Chart from 'react-google-charts';
 
 import LogoImage from '../../images/company_logo.png';
 
-export default function CompanyBox({title, valuation, growthPercent, color}) {
-    const LineData = [
-        ['x', 'Value'],
-        [1, 10],
-        [2, 23],
-        [3, 50],
-        [4, 30],
-        [5, 70],
-        [6, 10],
-        [7, 20],
-        [8, 50],
-        [9, 30],
-        [10, 60]
-    ];
-      
+import { companies } from "../../constants";
+
+export default function CompanyBox({title, valuation, growthPercent, color, lineData}) {
     const LineChartOptions = {
         vAxis: {
             textPosition: 'none',
@@ -61,7 +49,7 @@ export default function CompanyBox({title, valuation, growthPercent, color}) {
                     <Chart
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
-                        data={LineData}
+                        data={lineData}
                         options={LineChartOptions}
                         className="graph-chart"
                     />

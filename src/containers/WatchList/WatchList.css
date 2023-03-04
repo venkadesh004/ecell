@@ -1,5 +1,5 @@
 .WatchList {
-    width: 800px;
+    width: 1000px;
     height: 600px;
     background-color: white;
     margin-top: 40px;
@@ -10,6 +10,7 @@
 
 .watchlist-chart {
     height: 500px;
+    width: 100%;
 }
 
 .watchlist-heading {
@@ -43,6 +44,18 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+}
+
+.amount button {
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.amount img {
+    height: 20px;
+    margin-right: 20px;
 }
 
 .watchlist-heading-amount p {

@@ -1,0 +1,68 @@
+.StockExchange {
+    width: 85%;
+    height: 100%;
+    background-color: #F5F7F9;
+
+    border-top-left-radius: 10px;
+
+    padding: 10px;
+
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    padding-bottom: 20px;
+}
+
+.StockExchange::-webkit-scrollbar {
+    display: none;
+}
+
+.all-companies {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.companyBox {
+    width: 300px;
+}
+
+.all-companies button {
+    width: 300px;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.stockexchange-button {
+    margin-top: 20px;
+    margin-left: 20px;
+
+    border: 0;
+    outline: none;
+    background-color: white;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+.stockexchange-button img {
+    width: 10px;
+}
+
+.stockexchange-button h1 {
+    font-size: 15px;
+    font-weight: 500;
+
+    margin-left: 10px;
+}

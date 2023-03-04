@@ -58,8 +58,6 @@
 
     background-color: white;
 
-    padding: 10px;
-
     border-radius: 10px;
     cursor: pointer;
 
@@ -69,4 +67,16 @@
 
     border: none;
     outline: none;
+}
+
+.description p {
+    width: 400px;
+    background-color: white;
+    height: 300px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    display: flex;
+    text-align: center;
+    align-items: center;
 }

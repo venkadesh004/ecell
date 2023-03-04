@@ -1,19 +1,23 @@
 import './App.css';
+import { React, useState } from 'react';
 
-import { Navbar, MainPage, SidePage } from './components';
+import { Navbar, SidePage } from './components';
+import Database from './Database';
+export default function App() {
+  var pageIndex = 0;
 
-function App() {
+  const [searchState, setSearchState] = useState(false);
+  const [searchResult, setSearchResult] = useState("com1");
+  
+  console.log("State ", searchState);
+
   return (
     <div className="App">
-      <div className='navbar'>
-       <Navbar />
+      {/* <Database /> */}
+        <div className='navbar'>
+         <Navbar searchState={searchState} searchResult={searchResult} />
+        </div>
+        <SidePage pageIndex={pageIndex} searchResult={[searchState, searchResult]} />
       </div>
-      <div className='Main'>
-        <SidePage />
-        <MainPage />
-      </div>
-    </div>
   );
 }
-
-export default App;

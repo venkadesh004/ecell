@@ -12,11 +12,3 @@
   padding: 20px;
   height: 9vh;
 }
-
-.Main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 91vh;
-}

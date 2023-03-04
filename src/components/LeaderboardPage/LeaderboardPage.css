@@ -1,0 +1,50 @@
+.LeaderboardPage {
+    width: 85%;
+    height: 100%;
+    background-color: #F5F7F9;
+
+    border-top-left-radius: 10px;
+
+    padding: 10px;
+
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    padding-bottom: 20px;
+}
+
+.LeaderboardPage::-webkit-scrollbar {
+    display: none;
+}
+
+.pinned-heading {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.LeaderboardContents {
+    width: 100%;
+}
+
+.contents img {
+    height: 40px;
+}
+
+.contents h2 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+th {
+    text-align: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 30px;
+}

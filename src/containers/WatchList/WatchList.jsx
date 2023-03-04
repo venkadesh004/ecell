@@ -3,8 +3,17 @@ import './WatchList.css';
 import Chart from 'react-google-charts';
 
 import CompanyLogo from '../../images/company_logo.png';
+import BookMarkFill from '../../images/bookmark-fill.png';
+import BookMarkUnFill from '../../images/bookmark-unfill.png';
 
 export default class WatchList extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selected: true
+        }        
+    }
     render() {
         const LineData = [
             ['x', 'Value'],
@@ -22,6 +31,7 @@ export default class WatchList extends Component {
           
         const LineChartOptions = {
             vAxis: {
+                title: "Market Cap",
                 gridlines: {
                     color: '#E8EDF6'
                 },
@@ -30,6 +40,7 @@ export default class WatchList extends Component {
                 },
             },
             hAxis: {
+                title: "Time",
                 gridlines: {
                     color: 'transparent'
                 },
@@ -44,6 +55,7 @@ export default class WatchList extends Component {
                 position: 'none'
             },
         };  
+
         return (
             <div className="WatchList">
                 <div className="watchlist-heading">
@@ -53,6 +65,17 @@ export default class WatchList extends Component {
                     </div>
                     <div className="watchlist-heading-amount">
                         <div className="amount">
+                            <button onClick={() => {
+                                if (this.state.selected === true) {
+                                    this.setState({
+                                        selected: false
+                                    })
+                                } else {
+                                    this.setState({
+                                        selected: true
+                                    })
+                                }
+                            }}><img src={this.state.selected ? BookMarkUnFill : BookMarkFill} alt="" /></button>
                             <h2>{this.props.valuation}</h2>
                             <p style={this.props.color === "#41C3A9" ? {backgroundColor: "#EEFBF5", color: "#41C3A9"} : {backgroundColor: "#FFE9E8", color: this.props.color}}>{this.props.change}%</p>    
                         </div>

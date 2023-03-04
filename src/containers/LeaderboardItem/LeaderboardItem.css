@@ -1,0 +1,29 @@
+.LeaderboardItem {
+    margin-top: 40px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.LeaderboardItem img {
+    height: 40px;
+}
+
+.LeaderboardItem h2 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+td {
+    text-align: center;
+}
+
+.graph-leaderboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LeaderboardItem h2 {
+    font-size: 18px;
+    font-weight: 400;
+}

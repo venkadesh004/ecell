@@ -3,7 +3,7 @@
 
     background-color: white;
 
-    /* padding: 10px; */
+    padding: 10px;
 
     border-radius: 0px;
     cursor: pointer;
@@ -11,6 +11,7 @@
     /* margin-left: 40px; */
 
     min-width: 300px;
+    max-width: 300px;
 }
 
 .logo {
@@ -73,6 +74,7 @@
 .graph {
     width: 58%;
     height: 100%;
+    background-color: white;
 }
 
 .graph-chart {
