@@ -66,3 +66,42 @@
 
     margin-left: 10px;
 }
+
+.buy-sell {
+    margin-top: 40px;
+}
+
+.buy-values {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.buy-values-input {
+    width: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.buy-values-input input {
+    width: 300px;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 10px;
+    outline: none;
+    border: 0;
+    border-radius: 50px;
+}
+
+.buy-values button {
+    width: 150px;
+    height: 60px;
+    border-radius: 20px;
+    outline: none;
+    border: 0;
+    background-color: rgb(248, 78, 48);
+    color: white;
+    cursor: pointer;
+}

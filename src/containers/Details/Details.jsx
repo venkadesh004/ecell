@@ -14,7 +14,7 @@ export default function Details({title, marketCap, percent}) {
                 </div>
                 <div className="pe-ratio">
                     <h4>Percent</h4>
-                    <p>{percent}%</p>
+                    <p>{percent.substr(0,5)}%</p>
                 </div>
             </div>
         </div>

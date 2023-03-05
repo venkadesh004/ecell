@@ -47,6 +47,10 @@ var companies = [
                 equity: 10,
                 amount: 30000
             },
+            {
+                equity: 10,
+                amount: 31000
+            }
         ]
     }
 ];
@@ -74,6 +78,30 @@ var investor = {
     ]
 }
 
+function findByID(id) {
+    companies.forEach(element => {
+        if (id === element.id) {
+            return element;
+        }
+    });
+}
+
+function findIsBookmarked(companyName) {
+
+    for (var i=0; i<companies.length; i++) {
+        if (companies[i].name === companyName) {
+            console.log(companies[i].id);
+            for (var j=0; j<investor.bookmarks.length; j++) {
+                if (companies[i].id === investor.bookmarks[j]) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
 function stringAmount(amount) {
     var stringamount = "";
     var addingamount;
@@ -97,6 +125,15 @@ function stringAmount(amount) {
       amount = parseInt(amount / 1000);
     }
     stringamount = stringamount.slice(1);
+    for(var i=0; i<3; i++) {
+        if (stringamount[i] !== "0") {
+            break;
+        }
+        if (stringamount[i] === "0") {
+            stringamount = stringamount.slice(i+1);
+            i--;
+        }
+    }
     return stringamount;
 }
   
@@ -133,9 +170,14 @@ function calculateProfit() {
     return totalProfit;
 }
 
+var searchResult=[false, "com1"];
+
 module.exports.companies = companies;
 module.exports.investor = investor;
 module.exports.stringAmount = stringAmount;
 module.exports.marketCap = marketCap;
 module.exports.findGrowth = findGrowth;
 module.exports.calculateProfit = calculateProfit;
+module.exports.searchResult = searchResult;
+module.exports.findByID = findByID;
+module.exports.findIsBookmarked = findIsBookmarked;

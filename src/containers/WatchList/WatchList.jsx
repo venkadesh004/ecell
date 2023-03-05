@@ -6,29 +6,23 @@ import CompanyLogo from '../../images/company_logo.png';
 import BookMarkFill from '../../images/bookmark-fill.png';
 import BookMarkUnFill from '../../images/bookmark-unfill.png';
 
+import { findIsBookmarked } from "../../constants";
+
 export default class WatchList extends Component {
     constructor(props) {
         super(props);
 
+        this.monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
         this.state = {
-            selected: true
+            selected: findIsBookmarked(this.props.companyName),
+            date: new Date().getDate(),
+            month: this.monthList[new Date().getMonth()],
+            year: new Date().getFullYear()
         }        
     }
+
     render() {
-        const LineData = [
-            ['x', 'Value'],
-            [1, 10],
-            [2, 23],
-            [3, 50],
-            [4, 30],
-            [5, 70],
-            [6, 10],
-            [7, 20],
-            [8, 50],
-            [9, 30],
-            [10, 60]
-        ];
-          
         const LineChartOptions = {
             vAxis: {
                 title: "Market Cap",
@@ -56,6 +50,9 @@ export default class WatchList extends Component {
             },
         };  
 
+        // console.log(this.props.change.substr(0, 1)+this.props.change.substr(1, 5));
+        console.log(this.state.selected, this.props.companyName);
+
         return (
             <div className="WatchList">
                 <div className="watchlist-heading">
@@ -69,17 +66,18 @@ export default class WatchList extends Component {
                                 if (this.state.selected === true) {
                                     this.setState({
                                         selected: false
-                                    })
+                                    });
+
                                 } else {
                                     this.setState({
                                         selected: true
                                     })
                                 }
                             }}><img src={this.state.selected ? BookMarkUnFill : BookMarkFill} alt="" /></button>
-                            <h2>{this.props.valuation}</h2>
-                            <p style={this.props.color === "#41C3A9" ? {backgroundColor: "#EEFBF5", color: "#41C3A9"} : {backgroundColor: "#FFE9E8", color: this.props.color}}>{this.props.change}%</p>    
+                            <h2>Rs {this.props.valuation}</h2>
+                            <p style={this.props.color === "#41C3A9" ? {backgroundColor: "#EEFBF5", color: "#41C3A9"} : {backgroundColor: "#FFE9E8", color: this.props.color}}>{this.props.change.substr(0, 5)}%</p>    
                         </div>
-                        <p>Mar 13, 10:30:23 AM UTC-4</p>                        
+                        <p>{this.state.month} {this.state.date}, {this.state.year} UTC-4</p>                        
                     </div>
                 </div>
                 <Chart

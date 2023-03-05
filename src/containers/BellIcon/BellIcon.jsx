@@ -1,7 +1,7 @@
 import React from "react";
 import './BellIcon.css';
 
-import BellImage from '../../images/bell.png';
+import BellImage from '../../images/search.png';
 
 export default function BellIcon() {
     return (

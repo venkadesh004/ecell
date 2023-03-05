@@ -4,10 +4,42 @@
     justify-content: space-between;
 }
 
+.Navbar-middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Navbar-middle button {
+    outline: none;
+    border: 0;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
 .Navbar-side {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 
     width: 20%;
+}
+
+.SearchBar {
+    width: 650px;
+    height: 50px;
+    background-color: #FAFBFC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 40px;
+}
+
+.SearchBar input {
+    margin-left: 20px;
+    outline: none;
+    border: 0;
+    width: 87%;
+    height: 100%;
+    background-color: transparent;
 }

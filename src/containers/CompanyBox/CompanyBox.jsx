@@ -37,7 +37,7 @@ export default function CompanyBox({title, valuation, growthPercent, color, line
                 <img src={LogoImage} alt="" />
                 <div className="heading">
                     <h1>{title}</h1>
-                    <p style={color={color}}>{growthPercent}%</p>
+                    <p style={color={color}}>{growthPercent.substr(0, 5)}%</p>
                 </div>
             </div>
             <div className="portfolio">

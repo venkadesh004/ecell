@@ -2,19 +2,19 @@
     margin-top: 40px;
     width: 100%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .LeaderboardItem img {
     height: 40px;
+    width: 40px;
 }
 
 .LeaderboardItem h2 {
     font-size: 20px;
     font-weight: 500;
-}
-
-td {
-    text-align: center;
 }
 
 .graph-leaderboard {
@@ -26,4 +26,11 @@ td {
 .LeaderboardItem h2 {
     font-size: 18px;
     font-weight: 400;
+}
+
+.LeaderboardItem button {
+    border: 0;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
 }
