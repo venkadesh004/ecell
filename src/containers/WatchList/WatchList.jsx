@@ -6,7 +6,7 @@ import CompanyLogo from '../../images/company_logo.png';
 import BookMarkFill from '../../images/bookmark-fill.png';
 import BookMarkUnFill from '../../images/bookmark-unfill.png';
 
-import { findIsBookmarked } from "../../constants";
+import { addBookmark, findIsBookmarked, removeBookmark } from "../../constants";
 
 export default class WatchList extends Component {
     constructor(props) {
@@ -15,7 +15,6 @@ export default class WatchList extends Component {
         this.monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
         this.state = {
-            selected: findIsBookmarked(this.props.companyName),
             date: new Date().getDate(),
             month: this.monthList[new Date().getMonth()],
             year: new Date().getFullYear()
@@ -53,6 +52,9 @@ export default class WatchList extends Component {
         // console.log(this.props.change.substr(0, 1)+this.props.change.substr(1, 5));
         console.log(this.state.selected, this.props.companyName);
 
+        // var mark = this.props.bookmark;
+        var mark = findIsBookmarked(this.props.companyName);
+
         return (
             <div className="WatchList">
                 <div className="watchlist-heading">
@@ -63,17 +65,14 @@ export default class WatchList extends Component {
                     <div className="watchlist-heading-amount">
                         <div className="amount">
                             <button onClick={() => {
-                                if (this.state.selected === true) {
-                                    this.setState({
-                                        selected: false
-                                    });
-
+                                if (mark === true) {
+                                    mark = false;
+                                    addBookmark(this.props.companyName);
                                 } else {
-                                    this.setState({
-                                        selected: true
-                                    })
+                                    mark = true;
+                                    removeBookmark(this.props.companyName);
                                 }
-                            }}><img src={this.state.selected ? BookMarkUnFill : BookMarkFill} alt="" /></button>
+                            }}><img src={mark ? BookMarkUnFill : BookMarkFill} alt="" /></button>
                             <h2>Rs {this.props.valuation}</h2>
                             <p style={this.props.color === "#41C3A9" ? {backgroundColor: "#EEFBF5", color: "#41C3A9"} : {backgroundColor: "#FFE9E8", color: this.props.color}}>{this.props.change.substr(0, 5)}%</p>    
                         </div>

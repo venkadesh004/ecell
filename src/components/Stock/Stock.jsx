@@ -5,6 +5,7 @@ import WatchList from "../../containers/WatchList/WatchList";
 import Details from "../../containers/Details/Details";
 
 export default function Stock({companyName, valuation, growthPercent, color, lineData, idea, mark}) {
+  console.log(companyName, mark);
   return (
     <div style={{ display: "flex", alignItems: "start", marginTop: "20px" }}>
       <div>
@@ -17,7 +18,7 @@ export default function Stock({companyName, valuation, growthPercent, color, lin
           change={growthPercent}
           color={color}
           lineData={lineData}
-          mark={mark}
+          bookmark={mark}
         />
       </div>
       <div>

@@ -102,6 +102,32 @@ function findIsBookmarked(companyName) {
     return true;
 }
 
+function removeBookmark(companyName) {
+    var index;
+    for (var i=0; i<companies.length; i++) {
+        if (companies[i].name === companyName) {
+            for (var j=0; j<investor.bookmarks.length; j++) {
+                if (companies[i].id === investor.bookmarks[j]) {
+                    index = j;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+
+    investor.bookmarks.splice(index, 1);
+}
+
+function addBookmark(companyName) {
+    for (var i=0; i<companies.length; i++) {
+        if (companies[i].name === companyName) {
+            investor.bookmarks.push(companies[i].id);
+            break;
+        }
+    }
+}
+
 function stringAmount(amount) {
     var stringamount = "";
     var addingamount;
@@ -181,3 +207,5 @@ module.exports.calculateProfit = calculateProfit;
 module.exports.searchResult = searchResult;
 module.exports.findByID = findByID;
 module.exports.findIsBookmarked = findIsBookmarked;
+module.exports.removeBookmark = removeBookmark;
+module.exports.addBookmark = addBookmark;

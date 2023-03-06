@@ -14,7 +14,13 @@ export default function MainPage(props) {
     var result = findGrowth(companies[0].investments[companies[0].investments.length-1].amount, companies[0].investments[companies[0].investments.length-1].equity, companies[0].investments[companies[0].investments.length-2].amount, companies[0].investments[companies[0].investments.length-2].equity);
     const [growthPercent, setGrowthPercent] = useState(result[1] ? "+"+result[0] : "-"+result[0]);
     const [color, setColor] = useState(result[1] ? "#41C3A9" : "#FF7972");
-    const [mark, setMark] = useState(companies[0].id);
+    var marker = true;
+    investor.bookmarks.forEach(inv => {
+        if (inv === companies[0].id) {
+            marker = false;
+        }
+    });
+    const [mark, setMark] = useState(marker);
 
     var lineDataValue = [
         ['x', 'Value']
@@ -43,6 +49,7 @@ export default function MainPage(props) {
         setMark(mark);
     }
     var buttons = [];
+
     companies.forEach(element => {
         var valuation = stringAmount(((element.investments[element.investments.length-1].amount)/(element.investments[element.investments.length-1].equity))*100);
         var result = findGrowth(element.investments[element.investments.length-1].amount, element.investments[element.investments.length-1].equity, element.investments[element.investments.length-2].amount, element.investments[element.investments.length-2].equity);
@@ -61,7 +68,13 @@ export default function MainPage(props) {
             i++;
         });
 
-        var mark = element.id;
+        var mark = true;
+
+        investor.bookmarks.forEach(inv => {
+            if (inv === element.id) {
+                mark = false;
+            }   
+        });
 
         buttons.push(<button onClick={() => setterFunction(element.name, valuation, growthPercent, color, lineData, element.idea, mark)}><CompanyBox title={element.name} valuation={valuation} growthPercent={growthPercent} color={color} lineData={lineData} /></button>);
     });
