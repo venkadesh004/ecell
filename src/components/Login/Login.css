@@ -1,0 +1,87 @@
+.Login {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-col {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5F7F9;
+}
+
+.right-col {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.login-form {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login-form h1 {
+    font-size: 80px;
+}
+
+.login-form input {
+    width: 300px;
+    height: 50px;
+    outline: none;
+    border: 0;
+    background-color: #F5F7F9;
+    padding-left: 20px;
+    border-radius: 20px;
+}
+
+.select-role {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 270px;
+}
+
+.select-role button {
+    width: 120px;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid #bebebe;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+}
+
+.select-role button p {
+    font-weight: 600;
+}
+
+.register-redirect {
+    font-size: 17px;
+}
+
+.register-redirect a {
+    color: black;
+}
+
+.submit {
+    background-color: transparent;
+    width: 200px;
+    height: 50px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 40px;
+    cursor: pointer;
+}

@@ -4,8 +4,8 @@ import "./Stock.css";
 import WatchList from "../../containers/WatchList/WatchList";
 import Details from "../../containers/Details/Details";
 
-export default function Stock({companyName, valuation, growthPercent, color, lineData, idea, mark}) {
-  console.log(companyName, mark);
+export default function Stock({companyName, valuation, growthPercent, color, lineData, idea, mark, com}) {
+  // console.log(companyName, mark);
   return (
     <div style={{ display: "flex", alignItems: "start", marginTop: "20px" }}>
       <div>
@@ -19,6 +19,7 @@ export default function Stock({companyName, valuation, growthPercent, color, lin
           color={color}
           lineData={lineData}
           bookmark={mark}
+          com={com}
         />
       </div>
       <div>

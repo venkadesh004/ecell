@@ -33,7 +33,7 @@ export default class Navbar extends Component {
   checkResult = () => {
     if (this.state.searchInput.length > 0) {
       for(var i=0; i<companies.length; i++) {
-        if (companies[i].name === this.state.searchInput) {
+        if ((companies[i].name).toLowerCase() === (this.state.searchInput).toLowerCase()) {
           this.chageState();
           this.setState({
             output: companies[i].id
@@ -52,10 +52,11 @@ export default class Navbar extends Component {
       this.props.sendData([false, this.state.output]);
     }
   }
+
   render() {
     return (
       <div className="Navbar">
-        <Logo />
+        <Logo user={this.props.user} />
         <div className="Navbar-middle">
           <div className="SearchBar">
             <input

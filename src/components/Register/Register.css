@@ -1,0 +1,142 @@
+.Register {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-col {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5F7F9;
+}
+
+.right-col {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.right-col-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-col-main h1 {
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.mini-groups {
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mini-groups-pass {
+    margin-left: 10px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.mini-groups-pass input:nth-child(2) {
+    margin-top: 10px;
+}
+
+.register-form {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sets-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.register-form {
+    display: flex;
+    align-items: center;
+}
+
+.register-form h1 {
+    font-size: 80px;
+}
+
+.register-form input {
+    width: 300px;
+    height: 50px;
+    outline: none;
+    border: 0;
+    background-color: #F5F7F9;
+    padding-left: 20px;
+    border-radius: 20px;
+}
+
+.register-form textarea {
+    outline: none;
+    border: 0;
+    background-color: #F5F7F9;
+    padding-left: 20px;
+    padding-top: 20px;
+    border-radius: 20px;
+}
+
+.select-role {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 270px;
+}
+
+.select-role button {
+    width: 120px;
+    height: 60px;
+    background-color: transparent;
+    border: 2px solid #bebebe;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+}
+
+.select-role button p {
+    font-weight: 600;
+}
+
+.select-role button img {
+    width: 30px;
+}
+
+.login-redirect {
+    font-size: 17px;
+}
+
+.login-redirect a {
+    color: black;
+}
+
+.submit {
+    background-color: transparent;
+    width: 200px;
+    height: 50px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 40px;
+    cursor: pointer;
+}

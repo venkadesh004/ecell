@@ -1,18 +1,17 @@
 import React from "react";
-import './MainPageRender.css';
 
-import MainPage from "../MainPage/MainPage";
+import MainPageCompany from "../MainPageCompany/MainPageCompany";
 import LeaderboardPage from "../LeaderboardPage/LeaderboardPage";
-import WalletPage from "../WalletPage/WalletPage";
-import Portfolio from "../Portfolio/Portfolio";
-import StockExchange from "../StockExchange/StockExchange";
-import Stock from "../Stock/Stock";
 
-import { companies, findGrowth, marketCap, stringAmount, investor } from "../../constants";
+import './MainPageRenderCompany.css';
+import { companies, findGrowth, marketCap, stringAmount, companyUser } from "../../constants";
 
 import BackArrow from '../../images/back-arrow.svg';
 
-export default function MainPageRender({pageIndex, searchResult}) {
+import Stock from "../Stock/Stock";
+import Portfolio from "../Portfolio/Portfolio";
+
+export default function MainPageRenderCompany({pageIndex, searchResult, comID}) {
     if (searchResult[0] === true) {
         var output;
         companies.forEach(element => {
@@ -35,14 +34,10 @@ export default function MainPageRender({pageIndex, searchResult}) {
         return <div className="MainPageRender"><button className="stockexchange-button" onClick={() => window.location.reload(true)}><img src={BackArrow} alt="" /><h1>Back</h1></button><Stock companyName={output.name} valuation={stringAmount(marketCap(output.investments[output.investments.length-1].amount, output.investments[output.investments.length-1].equity))} growthPercent={result[1] ? "+"+result[0] : "-"+result[0]} color={result[1] ? "#41C3A9" : "#FF7972"} lineData={lineData} idea={output.idea} mark={true} /></div>;
     }
     if (pageIndex === 0) {
-        return <MainPage />;
+        return <MainPageCompany comID={comID} />;
     } else if (pageIndex === 1) {
         return <LeaderboardPage />;
-    } else if (pageIndex === 2) {
-        return <WalletPage />
-    } else if (pageIndex === 4) {
-        return <Portfolio users={investor} />
     } else {
-        return <StockExchange presentState={0} />
+        return <Portfolio users={companyUser} />;
     }
 }

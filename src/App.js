@@ -1,38 +1,24 @@
 import "./App.css";
-import { React, useState, Component } from "react";
+import { React } from "react";
 
-import { Navbar, SidePage } from "./components";
-import Database from "./Database";
+import InvestorPage from "./components/InvestorPage/InvestorPage";
+import CompanyPage from "./components/CompanyPage/CompanyPage";
 
-import { searchResult } from "./constants";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [false, "com1"]
-    }
-  }
-
-  sendData = (data) => {
-    this.setState({
-      data: data
-    })
-  };
-  render() {
-    var pageIndex = 0;
-
-    console.log(searchResult);
-    console.log(this.data);
-
-    return (
-      <div className="App">
-        {/* <Database /> */}
-        <div className="navbar">
-          <Navbar sendData={this.sendData} />
-        </div>
-        <SidePage pageIndex={pageIndex} searchResult={this.state.data} />
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route exact path="/login" element={<Login />}></Route>
+          <Route exact path="/register" element={<Register />}></Route>
+          <Route exact path="/investor" element={<InvestorPage />}></Route>
+          <Route exact path="/company" element={<CompanyPage />}></Route>
+        </Routes>
+      </Router>
+    </div>
+  );
 }

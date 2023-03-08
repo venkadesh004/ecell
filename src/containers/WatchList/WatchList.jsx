@@ -55,6 +55,22 @@ export default class WatchList extends Component {
         // var mark = this.props.bookmark;
         var mark = findIsBookmarked(this.props.companyName);
 
+        var bookmarks;
+
+        if (this.props.com === true) {
+            bookmarks = <button onClick={() => {
+                if (mark === true) {
+                    mark = false;
+                    addBookmark(this.props.companyName);
+                } else {
+                    mark = true;
+                    removeBookmark(this.props.companyName);
+                }
+            }}><img src={mark ? BookMarkUnFill : BookMarkFill} alt="" /></button>;
+        } else {
+            bookmarks = <div></div>;
+        }
+
         return (
             <div className="WatchList">
                 <div className="watchlist-heading">
@@ -64,15 +80,7 @@ export default class WatchList extends Component {
                     </div>
                     <div className="watchlist-heading-amount">
                         <div className="amount">
-                            <button onClick={() => {
-                                if (mark === true) {
-                                    mark = false;
-                                    addBookmark(this.props.companyName);
-                                } else {
-                                    mark = true;
-                                    removeBookmark(this.props.companyName);
-                                }
-                            }}><img src={mark ? BookMarkUnFill : BookMarkFill} alt="" /></button>
+                            {bookmarks}
                             <h2>Rs {this.props.valuation}</h2>
                             <p style={this.props.color === "#41C3A9" ? {backgroundColor: "#EEFBF5", color: "#41C3A9"} : {backgroundColor: "#FFE9E8", color: this.props.color}}>{this.props.change.substr(0, 5)}%</p>    
                         </div>

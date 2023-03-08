@@ -55,6 +55,14 @@ var companies = [
     }
 ];
 
+var companyUser = {
+    name: "Venkadesh S",
+    email: "venkadesh@student.tce.edu",
+    phone: "8610475929",
+    gender: true,
+    comID: "com1"
+}
+
 var investor = {
     name: "Venkadesh S",
     email: "venkadesh@student.tce.edu",
@@ -200,6 +208,7 @@ var searchResult=[false, "com1"];
 
 module.exports.companies = companies;
 module.exports.investor = investor;
+module.exports.companyUser = companyUser;
 module.exports.stringAmount = stringAmount;
 module.exports.marketCap = marketCap;
 module.exports.findGrowth = findGrowth;

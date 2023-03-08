@@ -1,19 +1,12 @@
 const firebaseConfig = {
-
-  apiKey: "AIzaSyBG5aLjkqGaqEGvunSFnMVfXP3rYbDlko8",
-
-  authDomain: "ecell-c202e.firebaseapp.com",
-
-  projectId: "ecell-c202e",
-
-  storageBucket: "ecell-c202e.appspot.com",
-
-  messagingSenderId: "833869244774",
-
-  appId: "1:833869244774:web:4a8ef334f9e8aca88380a7",
-
-  measurementId: "G-9YVFE6ME9V"
-
+  apiKey: "AIzaSyApm0UL76BHxiC36wzJZRCxQH0tsfMlOPU",
+  authDomain: "ecell-d5d2c.firebaseapp.com",
+  databaseURL: "https://ecell-d5d2c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ecell-d5d2c",
+  storageBucket: "ecell-d5d2c.appspot.com",
+  messagingSenderId: "443301337374",
+  appId: "1:443301337374:web:1c055dab09946ba6e9110f",
+  measurementId: "G-H31BLZLNGT"
 };
 
 export default firebaseConfig;

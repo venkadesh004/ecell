@@ -1,0 +1,19 @@
+.MainPageCompany {
+    width: 85%;
+    height: 100%;
+    background-color: #F5F7F9;
+
+    border-top-left-radius: 10px;
+
+    padding: 10px;
+
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    padding-bottom: 20px;
+}
+
+.MainPageCompany::-webkit-scrollbar {
+    display: none;
+}

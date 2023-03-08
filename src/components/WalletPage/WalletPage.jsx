@@ -191,6 +191,7 @@ export default class WalletPage extends Component {
             lineData={this.state.lineData}
             idea={this.state.idea}
             mark={this.state.mark}
+            com={true}
           />
         </div>
       );

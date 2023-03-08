@@ -13,7 +13,7 @@ export default class Database extends Component {
   }
 
   componentDidMount = async () => {
-    firebase.initializeApp(firebaseConfig);
+    await firebase.initializeApp(firebaseConfig);
 
     this.setState({
       database: firebase.database()
@@ -24,7 +24,7 @@ export default class Database extends Component {
   render() {
     return (
       <div className="Database">
-        
+        {this.state.database}
       </div>
     );
   }

@@ -88,7 +88,7 @@ export default function MainPage(props) {
             <div className="pin-company">
                 {buttons}
             </div>
-            <Stock companyName={companyName} valuation={valuation} growthPercent={growthPercent} color={color} lineData={lineData} idea={idea} mark={mark} />
+            <Stock companyName={companyName} valuation={valuation} growthPercent={growthPercent} color={color} lineData={lineData} idea={idea} mark={mark} com={true} />
         </div>
     );
 }
