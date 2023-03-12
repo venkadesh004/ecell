@@ -2,6 +2,7 @@ import React from "react";
 import './Portfolio.css';
 
 export default function Portfolio({users}) {
+    console.log(users);
     return (
         <div className="Portfolio">
             <div className="details-portfolio">

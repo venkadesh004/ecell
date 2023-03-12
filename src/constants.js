@@ -82,7 +82,8 @@ var investor = {
         }
     ],
     bookmarks: [
-        "com1"
+        "com1",
+        "com3"
     ]
 }
 
@@ -98,7 +99,7 @@ function findIsBookmarked(companyName) {
 
     for (var i=0; i<companies.length; i++) {
         if (companies[i].name === companyName) {
-            console.log(companies[i].id);
+            // console.log(companies[i].id);
             for (var j=0; j<investor.bookmarks.length; j++) {
                 if (companies[i].id === investor.bookmarks[j]) {
                     return false;
@@ -183,28 +184,24 @@ function findGrowth(amount1, equity1, amount2, equity2) {
       return [((diff / marketCap(amount2, equity2)) * 100).toString(), true];
     }
 }
- 
-function calculateProfit() {
-    var totalProfit = 0;
-    investor.myInvestments.forEach(element => {
-        companies.forEach(company => {
-            if (element.id === company.id) {
-                var eachEquityVal = (company.investments[company.investments.length-1].amount)/(company.investments[company.investments.length-1].equity);
-                var myInvestmentInto = element.amount;
-                var myEquity = element.equity;
 
-                var presentVal = myEquity*eachEquityVal;
-                var profit = presentVal-myInvestmentInto;
-                
-                totalProfit += profit;
-            }
-        });
-    });
+function findGrowthPercent(amount1, equity1, amount2, equity2) {
+    var result = findGrowth(amount1, equity1, amount2, equity2);
+    return result[1] ? "+" + result[0] : "-" + result[0];
+}
 
-    return totalProfit;
+function findColor(amount1, equity1, amount2, equity2) {
+    var result = findGrowth(amount1, equity1, amount2, equity2);
+    return result[1] ? "#41C3A9" : "#FF7972";
 }
 
 var searchResult=[false, "com1"];
+
+function changeCompanyList(list) {
+    // console.log(list, companies);
+    companies = list;
+    // console.log(list, companies);
+}
 
 module.exports.companies = companies;
 module.exports.investor = investor;
@@ -212,9 +209,11 @@ module.exports.companyUser = companyUser;
 module.exports.stringAmount = stringAmount;
 module.exports.marketCap = marketCap;
 module.exports.findGrowth = findGrowth;
-module.exports.calculateProfit = calculateProfit;
 module.exports.searchResult = searchResult;
 module.exports.findByID = findByID;
 module.exports.findIsBookmarked = findIsBookmarked;
 module.exports.removeBookmark = removeBookmark;
 module.exports.addBookmark = addBookmark;
+module.exports.changeCompanyList = changeCompanyList;
+module.exports.findGrowthPercent = findGrowthPercent;
+module.exports.findColor = findColor;

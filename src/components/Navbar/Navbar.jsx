@@ -5,6 +5,10 @@ import FaceProfile from "../../containers/FaceProfile/FaceProfile";
 
 import "./Navbar.css";
 
+// import { companies } from "../../constants";
+
+import StartFirebase from "../firebaseConfig";
+import { ref, onValue } from "firebase/database";
 import { companies } from "../../constants";
 
 export default class Navbar extends Component {
@@ -14,6 +18,7 @@ export default class Navbar extends Component {
       searchInput: "",
       find: false,
       output: "com1",
+      companies: []
     };
   }
 
@@ -30,18 +35,40 @@ export default class Navbar extends Component {
     });
   };
 
-  checkResult = () => {
+  checkResult = async () => {
+    console.log(this.state.companies, this.state.searchInput);
     if (this.state.searchInput.length > 0) {
-      for(var i=0; i<companies.length; i++) {
-        if ((companies[i].name).toLowerCase() === (this.state.searchInput).toLowerCase()) {
+      for(var i=0; i<this.state.companies.length; i++) {
+        console.log(this.state.companies[i].data, this.state.searchInput);
+        if ((this.state.companies[i].data.name).toLowerCase() === (this.state.searchInput).toLowerCase()) {
           this.chageState();
           this.setState({
-            output: companies[i].id
+            output: this.state.companies[i].data.id
           })
           break;
         }
       }
     }
+  }
+
+  componentDidMount() {
+    var db = StartFirebase();
+    const dbRef = ref(db, "company");
+
+    onValue(dbRef, (snapshot) => {
+      let records = [];
+      snapshot.forEach((childSnapshot) => {
+        let keyName = childSnapshot.key;
+        let data = childSnapshot.val();
+        records.push({
+          key: keyName,
+          data: data,
+        });
+      });
+      this.setState({
+        companies: records,
+      });
+    });
   }
 
   clickEvent = async () => {
@@ -74,7 +101,7 @@ export default class Navbar extends Component {
           </div>
         </div>
         <div className="Navbar-side">
-          <FaceProfile />
+          <FaceProfile name={this.props.profileName} gender={this.props.profileGender} email={this.props.profileEmail} />
         </div>
       </div>
     );

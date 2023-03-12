@@ -8,21 +8,23 @@ import {
   stringAmount,
   findGrowth,
   marketCap,
-  calculateProfit,
 } from "../../constants";
 
 import Stock from "../Stock/Stock";
 import BackArrow from "../../images/back-arrow.svg";
 
+import StartFirebase from "../firebaseConfig";
+import { ref, onValue } from "firebase/database";
+
 export default class WalletPage extends Component {
   constructor(props) {
     super(props);
     var mark = true;
-    investor.bookmarks.forEach(comp => {
-        if (companies[0].id === comp) {
-            mark = false;
-        }
-    })
+    investor.bookmarks.forEach((comp) => {
+      if (companies[0].id === comp) {
+        mark = false;
+      }
+    });
     this.state = {
       openState: this.props.presentState,
       companyName: companies[0].name,
@@ -34,14 +36,85 @@ export default class WalletPage extends Component {
       color: "#FFFFFFF",
       lineData: [["x", "Value"]],
       idea: companies[0].idea,
-      mark: mark
+      mark: mark,
+      tableData: [],
+      investorData: [],
     };
   }
+
+  componentDidMount() {
+    var db = StartFirebase();
+    const dbRef = ref(db, "company");
+
+    onValue(dbRef, (snapshot) => {
+      let records = [];
+      snapshot.forEach((childSnapshot) => {
+        let keyName = childSnapshot.key;
+        let data = childSnapshot.val();
+        records.push({
+          key: keyName,
+          data: data,
+        });
+      });
+      this.setState({
+        tableData: records,
+      });
+    });
+
+    db = StartFirebase();
+    const dbRefNew = ref(db, "investor");
+
+    onValue(dbRefNew, (snapshot) => {
+      let records = [];
+      snapshot.forEach((childSnapshot) => {
+        let keyName = childSnapshot.key;
+        let data = childSnapshot.val();
+        if (data.email === localStorage.getItem("email")) {
+          console.log(data);
+          records = data;
+        }
+      });
+      this.setState({
+        investorData: records,
+      });
+    });
+  }
   render() {
+    console.log(this.state.investorData);
     var companybox = [];
     var bookmarkBox = [];
 
+    var companies = this.state.tableData;
+    var investor = this.state.investorData;
+
+    var totalProfit = 0;
+
     companies.forEach((element) => {
+      element = element.data;
+      console.log(investor.investments);
+      if (investor.investments !== "") {
+        investor.investments.forEach((inv) => {
+          if (inv.id === element.id) {
+            var eachEquityVal =
+              element.investments[element.investments.length - 1].amount /
+              element.investments[element.investments.length - 1].equity;
+            var myInvestmentInto = inv.amount;
+            var myEquity = inv.equity;
+
+            var presentVal = myEquity * eachEquityVal;
+            var profit = presentVal - myInvestmentInto;
+
+            totalProfit += profit;
+          }
+        });
+      }
+    });
+
+    console.log(totalProfit);
+
+    companies.forEach((element) => {
+      element = element.data;
+      // console.log(element);
       var result = findGrowth(
         element.investments[element.investments.length - 1].amount,
         element.investments[element.investments.length - 1].equity,
@@ -59,117 +132,155 @@ export default class WalletPage extends Component {
         i++;
       });
 
-      companybox.push(
-        <div className="my-investments-box">
-          <button
-            onClick={() => {
-              var result = findGrowth(
-                element.investments[element.investments.length - 1].amount,
-                element.investments[element.investments.length - 1].equity,
-                element.investments[element.investments.length - 2].amount,
-                element.investments[element.investments.length - 2].equity
-              );
-              var lineData = [["x", "Value"]];
-              var i = 0;
-              element.investments.forEach((invest) => {
-                var output = parseInt(marketCap(invest.amount, invest.equity));
-                lineData.push([i + 1, output]);
-                i++;
-              });
-              var mark = true;
-              investor.bookmarks.forEach(comp => {
-                  if (element.id === comp) {
-                    mark = false;
-                  }
-              });
-              this.setState({
-                openState: 1,
-                companyName: element.name,
-                valuation: marketCap(
-                  element.investments[element.investments.length - 1].amount,
-                  element.investments[element.investments.length - 1].equity
-                ),
-                growthPercent: result[1] ? "+" + result[0] : "-" + result[0],
-                color: result[1] ? "#41C3A9" : "#FF7972",
-                lineData: lineData,
-                mark: mark
-              });
-            }}
-          >
-            <CompanyBox
-              title={element.name}
-              valuation={stringAmount(
-                (element.investments[element.investments.length - 1].amount /
-                  element.investments[element.investments.length - 1].equity) *
-                  100
-              )}
-              growthPercent={result[1] ? "+" + result[0] : "-" + result[0]}
-              color={result[1] ? "#41C3A9" : "#FF7972"}
-              lineData={lineData}
-            />
-          </button>
-        </div>
-      );
+      // // console.log("Check0", this.state.investorData);
 
-      investor.bookmarks.forEach((comp) => {
-        if (element.id === comp) {
-          bookmarkBox.push(
-            <div className="my-investments-box">
-              <button
-                onClick={() => {
-                  var result = findGrowth(
-                    element.investments[element.investments.length - 1].amount,
-                    element.investments[element.investments.length - 1].equity,
-                    element.investments[element.investments.length - 2].amount,
-                    element.investments[element.investments.length - 2].equity
-                  );
-                  var lineData = [["x", "Value"]];
-                  var i = 0;
-                  element.investments.forEach((invest) => {
-                    var output = parseInt(
-                      marketCap(invest.amount, invest.equity)
-                    );
-                    lineData.push([i + 1, output]);
-                    i++;
-                  });
-                  this.setState({
-                    openState: 1,
-                    companyName: element.name,
-                    valuation: marketCap(
+      console.log(investor.investments);
+      if (investor.investments !== "") {
+        investor.investments.forEach((comp) => {
+          if (comp.id === element.id) {
+            companybox.push(
+              <div className="my-investments-box">
+                <button
+                  onClick={() => {
+                    var result = findGrowth(
                       element.investments[element.investments.length - 1]
                         .amount,
-                      element.investments[element.investments.length - 1].equity
-                    ),
-                    growthPercent: result[1]
-                      ? "+" + result[0]
-                      : "-" + result[0],
-                    color: result[1] ? "#41C3A9" : "#FF7972",
-                    lineData: lineData,
-                    mark: false
-                  });
-                }}
-              >
-                <CompanyBox
-                  title={element.name}
-                  valuation={stringAmount(
-                    (element.investments[element.investments.length - 1]
-                      .amount /
                       element.investments[element.investments.length - 1]
-                        .equity) *
-                      100
-                  )}
-                  growthPercent={result[1] ? "+" + result[0] : "-" + result[0]}
-                  color={result[1] ? "#41C3A9" : "#FF7972"}
-                  lineData={lineData}
-                />
-              </button>
-            </div>
-          );
+                        .equity,
+                      element.investments[element.investments.length - 2]
+                        .amount,
+                      element.investments[element.investments.length - 2].equity
+                    );
+                    var lineData = [["x", "Value"]];
+                    var i = 0;
+                    element.investments.forEach((invest) => {
+                      var output = parseInt(
+                        marketCap(invest.amount, invest.equity)
+                      );
+                      lineData.push([i + 1, output]);
+                      i++;
+                    });
+                    var mark = true;
+                    investor.bookmarks.forEach((comp) => {
+                      if (element.id === comp) {
+                        mark = false;
+                      }
+                    });
+                    this.setState({
+                      openState: 1,
+                      companyName: element.name,
+                      valuation: marketCap(
+                        element.investments[element.investments.length - 1]
+                          .amount,
+                        element.investments[element.investments.length - 1]
+                          .equity
+                      ),
+                      growthPercent: result[1]
+                        ? "+" + result[0]
+                        : "-" + result[0],
+                      color: result[1] ? "#41C3A9" : "#FF7972",
+                      lineData: lineData,
+                      mark: mark,
+                    });
+                  }}
+                >
+                  <CompanyBox
+                    title={element.name}
+                    valuation={stringAmount(
+                      (element.investments[element.investments.length - 1]
+                        .amount /
+                        element.investments[element.investments.length - 1]
+                          .equity) *
+                        100
+                    )}
+                    growthPercent={
+                      result[1] ? "+" + result[0] : "-" + result[0]
+                    }
+                    color={result[1] ? "#41C3A9" : "#FF7972"}
+                    lineData={lineData}
+                  />
+                </button>
+              </div>
+            );
+          }
+        });
+      } else {
+        if (companybox.length === 0) {
+          companybox.push("No Investments");
         }
-      });
+      }
+
+      // // console.log("Check1", this.state.investorData);
+
+      if (investor.bookmarks !== "") {
+        investor.bookmarks.forEach((comp) => {
+          if (element.id === comp) {
+            // console.log(element.id);
+            bookmarkBox.push(
+              <div className="my-investments-box">
+                <button
+                  onClick={() => {
+                    var result = findGrowth(
+                      element.investments[element.investments.length - 1].amount,
+                      element.investments[element.investments.length - 1].equity,
+                      element.investments[element.investments.length - 2].amount,
+                      element.investments[element.investments.length - 2].equity
+                    );
+                    var lineData = [["x", "Value"]];
+                    var i = 0;
+                    element.investments.forEach((invest) => {
+                      var output = parseInt(
+                        marketCap(invest.amount, invest.equity)
+                      );
+                      lineData.push([i + 1, output]);
+                      i++;
+                    });
+                    this.setState({
+                      openState: 1,
+                      companyName: element.name,
+                      valuation: marketCap(
+                        element.investments[element.investments.length - 1]
+                          .amount,
+                        element.investments[element.investments.length - 1].equity
+                      ),
+                      growthPercent: result[1]
+                        ? "+" + result[0]
+                        : "-" + result[0],
+                      color: result[1] ? "#41C3A9" : "#FF7972",
+                      lineData: lineData,
+                      mark: false,
+                    });
+                  }}
+                >
+                  <CompanyBox
+                    title={element.name}
+                    valuation={stringAmount(
+                      (element.investments[element.investments.length - 1]
+                        .amount /
+                        element.investments[element.investments.length - 1]
+                          .equity) *
+                        100
+                    )}
+                    growthPercent={result[1] ? "+" + result[0] : "-" + result[0]}
+                    color={result[1] ? "#41C3A9" : "#FF7972"}
+                    lineData={lineData}
+                  />
+                </button>
+              </div>
+            );
+          }
+        }); 
+      } else {
+        if (bookmarkBox.length === 0) {
+          bookmarkBox.push("No Bookmarks");
+        }
+      }
     });
 
+    // // console.log("Check2", this.state.investorData);
+
     if (this.state.openState === 1) {
+      console.log(this.state.mark);
       return (
         <div className="WalletPage">
           <button
@@ -197,6 +308,8 @@ export default class WalletPage extends Component {
       );
     }
 
+    // console.log("profit", this.calculateProfit(companies, investor));
+
     return (
       <div className="WalletPage">
         <div className="pinned-heading">
@@ -209,7 +322,7 @@ export default class WalletPage extends Component {
           </div>
           <div className="pinned-heading">
             <h1>Your Profit: </h1>
-            <p>Rs {calculateProfit()}</p>
+            <p>Rs {totalProfit}</p>
           </div>
         </div>
         <div className="pinned-heading">

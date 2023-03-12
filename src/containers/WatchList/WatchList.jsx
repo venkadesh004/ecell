@@ -53,7 +53,7 @@ export default class WatchList extends Component {
         console.log(this.state.selected, this.props.companyName);
 
         // var mark = this.props.bookmark;
-        var mark = findIsBookmarked(this.props.companyName);
+        var mark = this.props.bookmarks;
 
         var bookmarks;
 

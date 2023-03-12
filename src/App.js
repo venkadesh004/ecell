@@ -7,12 +7,14 @@ import CompanyPage from "./components/CompanyPage/CompanyPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import { RealtimeData } from "./components/realtimeData";
 
 export default function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
+          <Route exact path="/" element={<RealtimeData />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/investor" element={<InvestorPage />}></Route>

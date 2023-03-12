@@ -20,8 +20,11 @@ export default class SidePage extends Component {
             pageIndex: this.props.pageIndex
         };
     }
+
     render() {
-        console.log(this.state.pageIndex);
+        // // console.log(this.state.pageIndex);
+        // console.log("sidepage", this.state.tableData);
+
         return (
             <div className="SidePage">
                 <div className="sidepage">
@@ -87,7 +90,7 @@ export default class SidePage extends Component {
                         </button>
                     </div>
                 </div>
-                <MainPageRender pageIndex={this.state.pageIndex} searchResult={this.props.searchResult} />
+                <MainPageRender pageIndex={this.state.pageIndex} searchResult={this.props.searchResult} user={this.props.user} />
             </div>
         );
     }

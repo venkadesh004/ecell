@@ -9,13 +9,36 @@ import UserProfileBlack from '../../images/userProfileBlack.png';
 import UserProfileGrey from '../../images/userProfileGrey.png';
 import MainPageRenderCompany from "../MainPageRenderCompany/MainPageRenderCompany";
 
+import StartFirebase from "../firebaseConfig";
+import { ref, onValue } from "firebase/database";
+
 export default class CompanySidePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageIndex: this.props.pageIndex
+            pageIndex: this.props.pageIndex,
+            tableData: []
         };
     }
+    componentDidMount() {
+        const db = StartFirebase();
+        const dbRef = ref(db, "company");
+    
+        onValue(dbRef, (snapshot) => {
+          let records = [];
+          snapshot.forEach((childSnapshot) => {
+            let keyName = childSnapshot.key;
+            let data = childSnapshot.val();
+            records.push({
+              key: keyName,
+              data: data,
+            });
+          });
+          this.setState({
+            tableData: records[0].data,
+          });
+        });
+      }
     render() {
         console.log(this.state.pageIndex);
         return (
@@ -61,7 +84,7 @@ export default class CompanySidePage extends Component {
                         </button>
                     </div>
                 </div>
-                <MainPageRenderCompany pageIndex={this.state.pageIndex} searchResult={this.props.searchResult} comID={this.props.comID} />
+                <MainPageRenderCompany pageIndex={this.state.pageIndex} searchResult={this.props.searchResult} comID={this.props.comID} user={this.props.user} />
             </div>
         );
     }

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import "./StockExchange.css";
 
 import {
-  companies,
   stringAmount,
   marketCap,
   findGrowth,
   investor,
+  companies
 } from "../../constants";
 
 import CompanyBox from "../../containers/CompanyBox/CompanyBox";
@@ -14,6 +14,9 @@ import CompanyBox from "../../containers/CompanyBox/CompanyBox";
 import Stock from "../Stock/Stock";
 
 import BackArrow from "../../images/back-arrow.svg";
+
+import StartFirebase from "../firebaseConfig";
+import { ref, onValue } from "firebase/database";
 
 export default class StockExchange extends Component {
   constructor(props) {
@@ -38,6 +41,7 @@ export default class StockExchange extends Component {
       mark: marker,
       equity: 0,
       amount: 0,
+      tableData: []
     };
     this.handleChangeEquity = this.handleChangeEquity.bind(this);
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
@@ -55,10 +59,32 @@ export default class StockExchange extends Component {
     });
   };
 
+  componentDidMount() {
+    const db = StartFirebase();
+    const dbRef = ref(db, "company");
+
+    onValue(dbRef, (snapshot) => {
+      let records = [];
+      snapshot.forEach((childSnapshot) => {
+        let keyName = childSnapshot.key;
+        let data = childSnapshot.val();
+        records.push({
+          key: keyName,
+          data: data,
+        });
+      });
+      this.setState({
+        tableData: records,
+      });
+    });
+  }
+
   render() {
     var companiesBox = [];
+    var companies = this.state.tableData;
 
     companies.forEach((element) => {
+      element = element.data;
       var valuation = stringAmount(
         (element.investments[element.investments.length - 1].amount /
         element.investments[element.investments.length - 1]

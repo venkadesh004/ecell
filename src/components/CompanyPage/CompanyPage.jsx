@@ -3,12 +3,16 @@ import React, {Component} from "react";
 import './CompanyPage.css';
 import {CompanySidePage, Navbar, SidePage} from '../../components';
 
+import StartFirebase from "../firebaseConfig";
+import { ref, onValue } from "firebase/database";
+
 export default class CompanyPage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            data: [false, "com1"]
+            data: [false, "com1"],
+            tableData: []
         };
     }
 
@@ -18,15 +22,37 @@ export default class CompanyPage extends Component {
         });
     };
 
+    componentDidMount() {
+        const db = StartFirebase();
+        const dbRef = ref(db, "companyUsers");
+    
+        onValue(dbRef, (snapshot) => {
+          let records = [];
+          snapshot.forEach((childSnapshot) => {
+            let keyName = childSnapshot.key;
+            let data = childSnapshot.val();
+            if (data.email === localStorage.getItem("email")) {
+                records = data;
+            }
+          });
+          this.setState({
+            tableData: records,
+          });
+        });
+      }
+
     render() {
         var pageIndex = 0;
 
-        return (
+        console.log(this.state.tableData);
+        console.log(this.state.tableData.comID);
+
+    return (
             <div className="CompanyPage">
                 <div className="navbar">
-                    <Navbar sendData={this.sendData} user={"Company"}></Navbar>
+                    <Navbar sendData={this.sendData} user={"Company"} profileName={this.state.tableData.name} profileGender={this.state.tableData.gender} profileEmail={this.state.tableData.email}></Navbar>
                 </div>
-                <CompanySidePage pageIndex={pageIndex} searchResult={this.state.data} comID={"com1"}></CompanySidePage>
+                <CompanySidePage pageIndex={pageIndex} searchResult={this.state.data} user={this.state.tableData} comID={this.state.tableData.comID}></CompanySidePage>
             </div>
         );
     }
