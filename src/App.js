@@ -14,7 +14,7 @@ export default function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" element={<RealtimeData />}></Route>
+          <Route exact path="/" element={<Login />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/investor" element={<InvestorPage />}></Route>
