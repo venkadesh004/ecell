@@ -203,7 +203,7 @@ function changeCompanyList(list) {
     // console.log(list, companies);
 }
 
-var postUpdateBase = "http://127.0.0.1:5000";
+var postUpdateBase = "https://ecell-backend-dp6q.onrender.com/";
 
 module.exports.companies = companies;
 module.exports.investor = investor;
