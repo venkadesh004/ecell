@@ -248,7 +248,7 @@ export default class Register extends Component {
                       axios.post(api, postDataCompany).then((response) => {
                         console.log(response);
                         if (response.data === "Done") {
-                          window.location.href = "/login";
+                          this.props.updateIndex(0);
                         }
                       });
                     } else {
