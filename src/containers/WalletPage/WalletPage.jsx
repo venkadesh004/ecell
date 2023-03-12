@@ -334,6 +334,10 @@ export default class WalletPage extends Component {
             <h1>Your Profit: </h1>
             <p>Rs {totalProfit}</p>
           </div>
+          <div className="pinned-heading">
+            <h1>Total Amount: </h1>
+            <p>Rs {totalProfit+investor.balance}</p>
+          </div>
         </div>
         <div className="pinned-heading">
           <h1>My Investments</h1>

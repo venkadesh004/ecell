@@ -6,7 +6,7 @@ import LogoImage from '../../images/tce-logo.png';
 export default function Logo({user}) {
     return (
         <div className='logo-div'>
-            <a href='/login'><img src={LogoImage} alt="" className='logo-image' /></a>
+            <a href='/'><img src={LogoImage} alt="" className='logo-image' /></a>
             <h2>{user}</h2>
         </div>
     );

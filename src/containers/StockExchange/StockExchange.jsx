@@ -232,15 +232,18 @@ export default class StockExchange extends Component {
               </div>
               <div className="buy-values">
                 <div className="buy-values-input">
-                  <input
-                    type="number"
-                    placeholder="Equity"
-                    value={this.state.equity}
-                    onChange={this.handleChangeEquity}
-                  />
+                  <p style={{marginRight: "20px"}}>Amount: </p>
                   <input
                     type="number"
                     placeholder="Amount"
+                    value={this.state.equity}
+                    onChange={this.handleChangeEquity}
+                    style={{marginRight: "40px"}}
+                  />
+                  <p style={{marginRight: "20px"}}>Equity: </p>
+                  <input
+                    type="number"
+                    placeholder="Equity"
                     value={this.state.amount}
                     onChange={this.handleChangeAmount}
                   />
@@ -277,6 +280,11 @@ export default class StockExchange extends Component {
 
                     await axios.post(api, myInv).then((response) => {
                       console.log(response);
+                      if (response.data === "No Balance") {
+                        alert("Insufficient Balance")
+                      } else if (response.data === "No Equity") {
+                        alert("No Equity")
+                      }
                     })
 
                     // investor.myInvestments.push(myInv);
