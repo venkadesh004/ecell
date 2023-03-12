@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 
 import './InvestorPage.css';
-import {Navbar, SidePage} from '../../components';
+import {Navbar, SidePage} from '../../containers';
 
 import StartFirebase from "../firebaseConfig";
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, update } from "firebase/database";
 
 export default class InvestorPage extends Component {
     constructor(props) {
@@ -54,7 +54,7 @@ export default class InvestorPage extends Component {
                 <div className="navbar">
                     <Navbar sendData={this.sendData} user={"Investor"} profileName={this.state.tableData.name} profileGender={this.state.tableData.gender} profileEmail={this.state.tableData.email}></Navbar>
                 </div>
-                <SidePage pageIndex={pageIndex} searchResult={this.state.data} user={this.state.tableData}></SidePage>
+                <SidePage pageIndex={pageIndex} searchResult={this.state.data} user={this.state.tableData} ></SidePage>
             </div>
         );
     }

@@ -10,7 +10,7 @@ import {
   postUpdateBase
 } from "../../constants";
 
-import CompanyBox from "../../containers/CompanyBox/CompanyBox";
+import CompanyBox from "../../components/CompanyBox/CompanyBox";
 
 import Stock from "../Stock/Stock";
 

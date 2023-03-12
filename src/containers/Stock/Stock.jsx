@@ -1,8 +1,8 @@
 import React from "react";
 import "./Stock.css";
 
-import WatchList from "../../containers/WatchList/WatchList";
-import Details from "../../containers/Details/Details";
+import WatchList from "../../components/WatchList/WatchList";
+import Details from "../../components/Details/Details";
 
 export default function Stock({companyName, valuation, growthPercent, color, lineData, idea, mark, com}) {
   // console.log(companyName, mark);

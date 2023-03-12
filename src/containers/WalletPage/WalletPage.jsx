@@ -1,5 +1,5 @@
 import { React, Component } from "react";
-import CompanyBox from "../../containers/CompanyBox/CompanyBox";
+import CompanyBox from "../../components/CompanyBox/CompanyBox";
 import "./WalletPage.css";
 
 import {

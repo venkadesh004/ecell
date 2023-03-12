@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 import './CompanyPage.css';
-import {CompanySidePage, Navbar, SidePage} from '../../components';
+import {CompanySidePage, Navbar, SidePage} from '../../containers';
 
 import StartFirebase from "../firebaseConfig";
 import { ref, onValue } from "firebase/database";

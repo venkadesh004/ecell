@@ -6,6 +6,7 @@ import "./Login.css";
 import Logo from "../../images/main-logo.png";
 import StartFirebase from "../firebaseConfig";
 import { ref, onValue } from "firebase/database";
+import { indexMover } from "../../indexMover";
 
 export default class Login extends Component {
   constructor(props) {
@@ -53,7 +54,8 @@ export default class Login extends Component {
       });
       if (flag === 1) {
         localStorage.setItem("email", this.state.email);
-        window.location.href = '/investor';
+        // indexMover.indexMover = 2;
+        this.props.updateIndex(2);
       }
     } else {
       var flag = 0;
@@ -80,7 +82,7 @@ export default class Login extends Component {
       });
       if (flag === 1) {
         localStorage.setItem("email", this.state.email);
-        window.location.href = '/company';
+        this.props.updateIndex(3);
       }
     }
   }
@@ -145,7 +147,9 @@ export default class Login extends Component {
               </button>
             </div>
             <p className="register-redirect">
-              Don't Have an Account? <a href="/register">Register</a>
+              Don't Have an Account? <button onClick={(e) => {
+                this.props.updateIndex(1);
+              }}>Register</button>
             </p>
             <button
               className="submit"

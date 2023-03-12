@@ -1,7 +1,7 @@
 import { React, Component } from "react";
-import Logo from "../../containers/Logo/Logo";
-import BellIcon from "../../containers/BellIcon/BellIcon";
-import FaceProfile from "../../containers/FaceProfile/FaceProfile";
+import Logo from "../../components/Logo/Logo";
+import BellIcon from "../../components/BellIcon/BellIcon";
+import FaceProfile from "../../components/FaceProfile/FaceProfile";
 
 import "./Navbar.css";
 

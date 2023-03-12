@@ -208,7 +208,9 @@ export default class Register extends Component {
                 </button>
               </div>
               <p className="login-redirect">
-                Already Have an Account? <a href="/login">Login</a>
+                Already Have an Account? <button onClick={() => {
+                  this.props.updateIndex(0)
+                }}>Login</button>
               </p>
               <button
                 className="submit"
@@ -266,7 +268,7 @@ export default class Register extends Component {
                       axios.post(api, postDataInvestor).then((response) => {
                         console.log(response);
                         if (response.data === "Done") {
-                          window.location.href = "/login";
+                          this.props.updateIndex(0);
                         }
                       });
                     }

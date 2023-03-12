@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./LeaderboardPage.css";
 
-import LeaderboardItem from "../../containers/LeaderboardItem/LeaderboardItem";
+import LeaderboardItem from "../../components/LeaderboardItem/LeaderboardItem";
 
 import StackLogo from "../../images/tce-logo.png";
 

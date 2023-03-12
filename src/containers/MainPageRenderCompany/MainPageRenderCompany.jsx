@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import MainPageCompany from "../MainPageCompany/MainPageCompany";
 import LeaderboardPage from "../LeaderboardPage/LeaderboardPage";
@@ -70,7 +70,7 @@ export default function MainPageRenderCompany({
       <div className="MainPageRender">
         <button
           className="stockexchange-button"
-          onClick={() => window.location.reload(true)}
+          onClick={() => localStorage.setItem("lastPage", 3)}
         >
           <img src={BackArrow} alt="" />
           <h1>Back</h1>

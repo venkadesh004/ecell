@@ -71,7 +71,7 @@ export default class SidePage extends Component {
                         }}>
                             <div className="home">
                                 <img src={this.state.pageIndex === 3 ? StockExchangeBlack : StockExchangeGrey} alt="" />
-                                <p style={this.state.pageIndex === 3 ? {color: "#000000"}: {color: "#96A0B5"}}>Stock exchange</p>
+                                <p style={this.state.pageIndex === 3 ? {color: "#000000"}: {color: "#96A0B5"}}>Equity exchange</p>
                             </div>
                         </button>
                     </div>

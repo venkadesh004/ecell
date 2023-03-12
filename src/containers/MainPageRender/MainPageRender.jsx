@@ -20,9 +20,11 @@ import BackArrow from "../../images/back-arrow.svg";
 import StartFirebase from "../firebaseConfig";
 import { ref, onValue } from "firebase/database";
 
-export default function MainPageRender({ pageIndex, searchResult, user }) {
-  console.log(searchResult);
-  if (searchResult[0] === true) {
+export default class MainPageRender extends React.Component {
+  render() {
+    console.log(this.props.searchResult);
+  // const [searchRes, setSearchRes] = useState(this.props.searchResult[0]);
+  if (this.props.searchResult[0] === true) {
     var output;
     var companies;
     var db = StartFirebase();
@@ -43,7 +45,7 @@ export default function MainPageRender({ pageIndex, searchResult, user }) {
     });
     companies.forEach((element) => {
       element = element.data;
-      if (element.id === searchResult[1]) {
+      if (element.id === this.props.searchResult[1]) {
         output = element;
       }
     });
@@ -66,7 +68,7 @@ export default function MainPageRender({ pageIndex, searchResult, user }) {
       <div className="MainPageRender">
         <button
           className="stockexchange-button"
-          onClick={() => window.location.reload(true)}
+          onClick={() => {localStorage.setItem("lastPage", 2); window.location.reload()}}
         >
           <img src={BackArrow} alt="" />
           <h1>Back</h1>
@@ -88,16 +90,17 @@ export default function MainPageRender({ pageIndex, searchResult, user }) {
       </div>
     );
   }
-  if (pageIndex === 0) {
+  if (this.props.pageIndex === 0) {
     return <MainPage />;
-  } else if (pageIndex === 1) {
+  } else if (this.props.pageIndex === 1) {
     return <LeaderboardPage />;
-  } else if (pageIndex === 2) {
+  } else if (this.props.pageIndex === 2) {
     return <WalletPage />;
-  } else if (pageIndex === 4) {
-    // console.log("In Render", user);
-    return <Portfolio users={user} />;
+  } else if (this.props.pageIndex === 4) {
+    // console.log("In Render", this.props.user);
+    return <Portfolio users={this.props.user} />;
   } else {
     return <StockExchange presentState={0} />;
+  }
   }
 }

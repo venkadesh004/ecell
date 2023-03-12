@@ -127,8 +127,12 @@
     font-size: 17px;
 }
 
-.login-redirect a {
+.login-redirect button {
+    background-color: transparent;
     color: black;
+    outline: none;
+    border: 0;
+    cursor: pointer;
 }
 
 .submit {

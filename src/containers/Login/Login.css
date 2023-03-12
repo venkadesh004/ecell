@@ -72,8 +72,12 @@
     font-size: 17px;
 }
 
-.register-redirect a {
+.register-redirect button {
+    outline: none;
+    border: 0;
+    background-color: transparent;
     color: black;
+    cursor: pointer;
 }
 
 .submit {

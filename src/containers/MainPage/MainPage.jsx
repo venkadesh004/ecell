@@ -4,7 +4,7 @@ import "./MainPage.css";
 import StartFirebase from "../firebaseConfig";
 import { ref, onValue } from "firebase/database";
 
-import CompanyBox from "../../containers/CompanyBox/CompanyBox";
+import CompanyBox from "../../components/CompanyBox/CompanyBox";
 import PinImage from "../../images/pin.png";
 import Stock from "../Stock/Stock";
 
