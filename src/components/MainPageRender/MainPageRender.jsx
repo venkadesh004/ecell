@@ -33,6 +33,7 @@ export default function MainPageRender({ pageIndex, searchResult, user }) {
       snapshot.forEach((childSnapshot) => {
         let keyName = childSnapshot.key;
         let data = childSnapshot.val();
+        data = Object.values(data)[0];
         records.push({
           key: keyName,
           data: data,

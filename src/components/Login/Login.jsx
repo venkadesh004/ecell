@@ -64,7 +64,13 @@ export default class Login extends Component {
         await snapshot.forEach((childSnapshot) => {
           let keyName = childSnapshot.key;
           let data = childSnapshot.val();
-          console.log(data.password, data.email, email, password);
+          // console.log(data);
+          // console.log(Object.keys(data));
+          // var key = Object.keys(data)
+          // console.log(key);
+          // console.log(Object.values(data)[0])
+          data = Object.values(data)[0]
+          // console.log(data.password, data.email, email, password);
           console.log(data.password === password, data.email === email);
           if (data.password === password && data.email === email) {
             console.log("Ok");

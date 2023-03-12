@@ -203,6 +203,8 @@ function changeCompanyList(list) {
     // console.log(list, companies);
 }
 
+var postUpdateBase = "http://127.0.0.1:5000";
+
 module.exports.companies = companies;
 module.exports.investor = investor;
 module.exports.companyUser = companyUser;
@@ -217,3 +219,4 @@ module.exports.addBookmark = addBookmark;
 module.exports.changeCompanyList = changeCompanyList;
 module.exports.findGrowthPercent = findGrowthPercent;
 module.exports.findColor = findColor;
+module.exports.postUpdateBase = postUpdateBase;

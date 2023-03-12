@@ -24,6 +24,7 @@ export default function MainPageRenderCompany({
   pageIndex,
   searchResult,
   comID,
+  user
 }) {
   if (searchResult[0] === true) {
     var output;
@@ -36,6 +37,7 @@ export default function MainPageRenderCompany({
       snapshot.forEach((childSnapshot) => {
         let keyName = childSnapshot.key;
         let data = childSnapshot.val();
+        data = Object.values(data)[0]
         records.push({
           key: keyName,
           data: data,
@@ -95,6 +97,6 @@ export default function MainPageRenderCompany({
   } else if (pageIndex === 1) {
     return <LeaderboardPage />;
   } else {
-    return <Portfolio users={companyUser} />;
+    return <Portfolio users={user} />;
   }
 }

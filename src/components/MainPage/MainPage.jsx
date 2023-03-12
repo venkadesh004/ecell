@@ -92,10 +92,20 @@ export default class MainPage extends Component {
       snapshot.forEach((childSnapshot) => {
         let keyName = childSnapshot.key;
         let data = childSnapshot.val();
+        data = Object.values(data)[0];
         records.push({
           key: keyName,
           data: data,
         });
+        records.forEach(async (element) => {
+          element = element.data;
+            // console.log("Checking records: ", element, this.props.comID)
+            if (this.state.lineData !== element.lineData) {
+              this.setState({
+                flagger: 0
+              })
+            }
+        })
       });
       this.setState({
         tableData: records,
@@ -134,12 +144,16 @@ export default class MainPage extends Component {
             .equity) *
           100
       );
-      var result = findGrowth(
-        element.data.investments[element.data.investments.length - 1].amount,
-        element.data.investments[element.data.investments.length - 1].equity,
-        element.data.investments[element.data.investments.length - 2].amount,
-        element.data.investments[element.data.investments.length - 2].equity
-      );
+      var result = 0;
+      if (element.data.investments.length > 1) {
+        result = findGrowth(
+          element.data.investments[element.data.investments.length - 1].amount,
+          element.data.investments[element.data.investments.length - 1].equity,
+          element.data.investments[element.data.investments.length - 2].amount,
+          element.data.investments[element.data.investments.length - 2].equity
+        );
+      }
+      
       var growthPercent = result[1] ? "+" + result[0] : "-" + result[0];
       var color = result[1] ? "#41C3A9" : "#FF7972";
 
@@ -192,21 +206,24 @@ export default class MainPage extends Component {
 
     var companies = this.state.tableData;
     companies.forEach((element) => {
+      // console.log("MainPage", element);
       element = element.data;
       // console.log(element.id, this.props.comID);
-      if (element.id === "com1") {
         var companyName = element.name;
         var valuation = stringAmount(
           (element.investments[element.investments.length - 1].amount /
             element.investments[element.investments.length - 1].equity) *
             100
         );
-        var result = findGrowth(
-          element.investments[element.investments.length - 1].amount,
-          element.investments[element.investments.length - 1].equity,
-          element.investments[element.investments.length - 2].amount,
-          element.investments[element.investments.length - 2].equity
-        );
+        var result = 0;
+        if (element.investments.length > 1) {
+          result = findGrowth(
+            element.investments[element.investments.length - 1].amount,
+            element.investments[element.investments.length - 1].equity,
+            element.investments[element.investments.length - 2].amount,
+            element.investments[element.investments.length - 2].equity
+          );
+        }
         var growthPercent = result[1] ? "+" + result[0] : "-" + result[0];
         var color = result[1] ? "#41C3A9" : "#FF7972";
 
@@ -240,6 +257,8 @@ export default class MainPage extends Component {
           }
         });
 
+        // console.log("Changing details", companyName, valuation, growthPercent, color, lineDataValue, idea, mark);
+
         if (this.state.flagger === 0) {
           this.setterFunction(
             companyName,
@@ -254,7 +273,6 @@ export default class MainPage extends Component {
             flagger: 1
           })
         }
-      }
     });
 
     return (

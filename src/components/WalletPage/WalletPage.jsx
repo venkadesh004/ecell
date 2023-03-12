@@ -26,7 +26,7 @@ export default class WalletPage extends Component {
       }
     });
     this.state = {
-      openState: this.props.presentState,
+      openState: 0,
       companyName: companies[0].name,
       valuation: marketCap(
         companies[0].investments[companies[0].investments.length - 1].amount,
@@ -51,6 +51,7 @@ export default class WalletPage extends Component {
       snapshot.forEach((childSnapshot) => {
         let keyName = childSnapshot.key;
         let data = childSnapshot.val();
+        data = Object.values(data)[0]
         records.push({
           key: keyName,
           data: data,
@@ -115,12 +116,15 @@ export default class WalletPage extends Component {
     companies.forEach((element) => {
       element = element.data;
       // console.log(element);
-      var result = findGrowth(
-        element.investments[element.investments.length - 1].amount,
-        element.investments[element.investments.length - 1].equity,
-        element.investments[element.investments.length - 2].amount,
-        element.investments[element.investments.length - 2].equity
-      );
+      var result = 0;
+      if (element.investments.length > 1) {
+        result = findGrowth(
+          element.investments[element.investments.length - 1].amount,
+          element.investments[element.investments.length - 1].equity,
+          element.investments[element.investments.length - 2].amount,
+          element.investments[element.investments.length - 2].equity
+        );
+      }
 
       var lineData = [["x", "Value"]];
 
@@ -142,15 +146,18 @@ export default class WalletPage extends Component {
               <div className="my-investments-box">
                 <button
                   onClick={() => {
-                    var result = findGrowth(
-                      element.investments[element.investments.length - 1]
-                        .amount,
-                      element.investments[element.investments.length - 1]
-                        .equity,
-                      element.investments[element.investments.length - 2]
-                        .amount,
-                      element.investments[element.investments.length - 2].equity
-                    );
+                    var result = 0;
+                    if (element.investments.length > 1) {
+                      result = findGrowth(
+                        element.investments[element.investments.length - 1]
+                          .amount,
+                        element.investments[element.investments.length - 1]
+                          .equity,
+                        element.investments[element.investments.length - 2]
+                          .amount,
+                        element.investments[element.investments.length - 2].equity
+                      );
+                    }
                     var lineData = [["x", "Value"]];
                     var i = 0;
                     element.investments.forEach((invest) => {
@@ -161,11 +168,13 @@ export default class WalletPage extends Component {
                       i++;
                     });
                     var mark = true;
+                    if (investor.bookmarks !== "") {
                     investor.bookmarks.forEach((comp) => {
                       if (element.id === comp) {
                         mark = false;
                       }
                     });
+                    }
                     this.setState({
                       openState: 1,
                       companyName: element.name,
@@ -213,6 +222,7 @@ export default class WalletPage extends Component {
       // // console.log("Check1", this.state.investorData);
 
       if (investor.bookmarks !== "") {
+        console.log("Wallet page", investor.bookmarks);
         investor.bookmarks.forEach((comp) => {
           if (element.id === comp) {
             // console.log(element.id);

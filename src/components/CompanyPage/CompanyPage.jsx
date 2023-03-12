@@ -31,8 +31,10 @@ export default class CompanyPage extends Component {
           snapshot.forEach((childSnapshot) => {
             let keyName = childSnapshot.key;
             let data = childSnapshot.val();
+            data = Object.values(data)[0]
             if (data.email === localStorage.getItem("email")) {
                 records = data;
+                // console.log("User", records);
             }
           });
           this.setState({

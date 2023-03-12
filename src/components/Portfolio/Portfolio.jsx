@@ -18,6 +18,10 @@ export default function Portfolio({users}) {
                     <h2>Phone: </h2>
                     <p>{users.phone}</p>
                 </div>
+                <div className="data-portfolio">
+                    <h2>AVailable Equity: </h2>
+                    <p>{users.remaining}%</p>
+                </div>
             </div>
         </div>
     );
