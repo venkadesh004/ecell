@@ -86,7 +86,7 @@ export default class LeaderboardPage extends Component {
               element.data.investments[element.data.investments.length - 1].equity
             )
           )}
-          investors={element.data.investments.length}
+          investors={element.data.investments.length-1}
         />
       );
     });

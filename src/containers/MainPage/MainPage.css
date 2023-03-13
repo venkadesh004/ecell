@@ -80,3 +80,9 @@
     text-align: center;
     align-items: center;
 }
+
+@media screen and (max-width: 1300px) {
+    .pin-company button {
+        margin-right: 40px;
+    }
+}
