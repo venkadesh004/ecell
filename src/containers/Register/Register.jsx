@@ -77,10 +77,10 @@ export default class Register extends Component {
   render() {
     return (
       <div className="Register">
-        <div className="left-col">
+        <div className="left-col-reg">
           <img src={Logo} alt="" />
         </div>
-        <div className="right-col" onSubmit={(e) => e.preventDefault()}>
+        <div className="right-col-reg" onSubmit={(e) => e.preventDefault()}>
           <div className="right-col-main">
             <h1>Sign Up</h1>
             <form action="" className="register-form">

@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-.left-col {
+.left-col-login {
     width: 40%;
     height: 100%;
     display: flex;
@@ -88,4 +88,10 @@
     border: 1px solid black;
     border-radius: 40px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+    .left-col-login {
+        display: none;
+    }
 }

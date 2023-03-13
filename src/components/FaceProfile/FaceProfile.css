@@ -38,3 +38,20 @@
     font-size: 12px;
     color: #BFBFBF;
 }
+
+@media screen and (max-width: 1300px) {
+    .user-details h2 {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .user-details {
+        display: none;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+    }
+}

@@ -7,8 +7,8 @@ import Details from "../../components/Details/Details";
 export default function Stock({companyName, valuation, growthPercent, color, lineData, idea, mark, com}) {
   // console.log(companyName, mark);
   return (
-    <div style={{ display: "flex", alignItems: "start", marginTop: "20px" }}>
-      <div>
+    <div style={{ display: "flex", alignItems: "start", marginTop: "20px" }} className="Stock">
+      <div className="stock-watch">
         <div className="pinned-heading">
           <h1>Stock Watchlists</h1>
         </div>

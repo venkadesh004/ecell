@@ -90,7 +90,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <div className="left-col">
+        <div className="left-col-login">
           <img src={Logo} alt="" />
         </div>
         <div className="right-col" onSubmit={(e) => e.preventDefault()}>

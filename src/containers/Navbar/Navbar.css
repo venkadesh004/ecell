@@ -43,3 +43,16 @@
     height: 100%;
     background-color: transparent;
 }
+
+@media screen and (max-width: 1000px) {
+    .SearchBar {
+        width: 400px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .Navbar-middle {
+        display: none;
+    }
+}

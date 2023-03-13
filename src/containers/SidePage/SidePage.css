@@ -63,3 +63,15 @@
     border: 0;
     background-color: transparent;
 }
+
+@media screen and (max-width: 1300px) {
+    .sidepage {
+        width: 100%;
+        align-items: center;
+    }
+
+    .SidePage {
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+}

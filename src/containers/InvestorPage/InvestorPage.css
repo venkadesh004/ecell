@@ -6,3 +6,10 @@
     padding: 20px;
     height: 9vh;
 }
+
+@media screen and (max-width: 1300px) {
+    .InvestorPage {
+        overflow: scroll;
+        height: 120vh;
+    }
+}

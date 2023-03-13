@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-.left-col {
+.left-col-reg {
     width: 40%;
     height: 100%;
     display: flex;
@@ -15,7 +15,7 @@
     background-color: #F5F7F9;
 }
 
-.right-col {
+.right-col-reg {
     width: 60%;
     height: 100%;
     display: flex;
@@ -56,7 +56,7 @@
 }
 
 .register-form {
-    height: 600px;
+    /* height: 600px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,6 +94,7 @@
     padding-left: 20px;
     padding-top: 20px;
     border-radius: 20px;
+    margin-top: 20px;
 }
 
 .select-role {
@@ -102,6 +103,7 @@
     justify-content: space-between;
 
     width: 270px;
+    margin-top: 20px;
 }
 
 .select-role button {
@@ -124,6 +126,7 @@
 }
 
 .login-redirect {
+    margin-top: 20px;
     font-size: 17px;
 }
 
@@ -136,6 +139,7 @@
 }
 
 .submit {
+    margin-top: 30px;
     background-color: transparent;
     width: 200px;
     height: 50px;
@@ -143,4 +147,36 @@
     border: 1px solid black;
     border-radius: 40px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+    .left-col-reg {
+        display: none;
+    }
+
+    .sets-form {
+        flex-direction: column;
+    }
+
+    .mini-groups {
+        margin-top: 20px;
+    }
+
+    .Register {
+        overflow-y: scroll;
+        height: 130vh;
+    }
+
+    .right-col-reg {
+        align-items: flex-start;
+    }
+
+    .register-form textarea {
+        margin-top: 20px;
+        height: 300px;
+    }
+
+    .select-role {
+        margin-top: 50px;
+    }
 }

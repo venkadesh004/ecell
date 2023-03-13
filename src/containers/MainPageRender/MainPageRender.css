@@ -17,3 +17,9 @@
 .MainPageRender::-webkit-scrollbar {
     display: none;
 }
+
+@media screen and (max-width: 1300px) {
+    .MainPageRender {
+        width: 100%;
+    }
+}

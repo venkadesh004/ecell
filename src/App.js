@@ -18,7 +18,7 @@ export default function App() {
   // indexMover = indexMover.indexMover;
 
   // localStorage.setItem("lastPage", 0);
-  const [indexMover, setIndexMover] = useState(0);
+  const [indexMover, setIndexMover] = useState(2);
   // console.log("Storage", localStorage.getItem("lastPage"))
 
   const updateIndex = (index) => {
