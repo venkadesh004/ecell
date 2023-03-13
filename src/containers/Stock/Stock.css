@@ -1,5 +1,5 @@
 .Stock {
-    width: 85%;
+    width: 100%;
     height: 100%;
     background-color: #F5F7F9;
 
@@ -29,10 +29,5 @@
 @media screen and (max-width: 1000px) {
     .stock-watch {
         display: none;
-    }
-
-    .Stock {
-        width: 100%;
-        height: 700px;
     }
 }
